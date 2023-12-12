@@ -1,4 +1,4 @@
-# Youtube Transcription Tool
+# YouTube Transcription Tool
 
 A simple tool built with OpenAI's Whisper model as the core to transcribe YouTube videos. It uses a contextual spell checker based on BERT and GPT-3.5 to enhance the transcriptions from Whisper.
 

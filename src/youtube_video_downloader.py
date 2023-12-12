@@ -36,7 +36,7 @@ class YoutubeVideoDownloader:
         except exceptions.VideoUnavailable:
             raise YVDException(f'The video {url} is not available anymore')
         except exceptions.RegexMatchError:
-            raise YVDException(f'{url} is not a valid Youtube video URL')
+            raise YVDException(f'{url} is not a valid YouTube video URL')
         except exceptions.PytubeError as exception:
             raise YVDException(str(exception))
         

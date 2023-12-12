@@ -88,22 +88,22 @@ class YoutubeVideoTranscription:
 
     def __transcribe_video_url(self, video_url):
         try:
-            self.logger.info(f'Starting the transcription of the Youtube video {video_url}')
+            self.logger.info(f'Starting the transcription of the YouTube video {video_url}')
             audio_path = self.video_downloader.download_video_audio(video_url)
             transcription = self.__transcribe_audio_file(audio_path)
             transcription_path = self.__save_transcription(transcription, audio_path)
             self.video_downloader.delete_stored_video_audio(audio_path)
             self.logger.info(f'Completed the transcription of the Youtube video {video_url}')
-            print_message = f'The transcription for the Youtube video {video_url} was saved on {transcription_path}'
+            print_message = f'The transcription for the YouTube video {video_url} was saved on {transcription_path}'
         
         except YVDException as ydb_exception:
             self.logger.exception(ydb_exception, exc_info=False)
-            print_message = f'The Youtube video {video_url} was not transcripted because it could not be downloaded: ' + \
+            print_message = f'The YouTube video {video_url} was not transcripted because it could not be downloaded: ' + \
                   f'{str(ydb_exception)}. Please, fix the URL if it is incorrect, or try a different one'
         
         except (AudioSplitterException, ATMException) as exception:
             self.logger.exception(exception, exc_info=False)
-            print_message = f'The Youtube video {video_url} was not transcripted because there was an error in the ' + \
+            print_message = f'The YouTube video {video_url} was not transcripted because there was an error in the ' + \
                   'transcription process. Please, try again'
             
         return print_message
@@ -120,7 +120,7 @@ class YoutubeVideoTranscription:
             print(print_message)
             if self.still_entering_urls:
                 # Avoid confusing the user when printing messages and entering URLs at the same time
-                print('Enter a Youtube video URL to transcribe (or "exit" to quit) and press ENTER:')
+                print('Enter a YouTube video URL to transcribe (or "exit" to quit) and press ENTER:')
             task_queue.task_done()
 
 
@@ -140,13 +140,13 @@ class YoutubeVideoTranscription:
             task_queue = asyncio.Queue()
             asyncio.create_task(self.__process_queue(pool, task_queue))
 
-            print('Youtube transcription tool with Whisper')
+            print('YouTube transcription tool with Whisper')
 
             self.__set_gpt_usage()
 
             while True:
                 # ainput allows to have an asynchronous input function
-                user_input = await aioconsole.ainput('Enter a Youtube video URL to transcribe ' + \
+                user_input = await aioconsole.ainput('Enter a YouTube video URL to transcribe ' + \
                                                      '(or "exit" to quit) and press ENTER:\n')
 
                 if user_input.lower() == 'exit':

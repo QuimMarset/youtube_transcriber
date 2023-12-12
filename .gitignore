@@ -1,0 +1,6 @@
+audios
+transcriptions
+youtube_video_transcription.log
+openai_key.env
+__pycache__
+.vscode
